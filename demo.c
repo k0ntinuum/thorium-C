@@ -4,7 +4,7 @@ void encrypt_demo() {
     u32 eh = 100;
     randomize_key(F);
     copy_key(f,F);
-    printf("\n\nf = \n");
+    printf("\n\n\n\n");
 	print_f(f);
     printf("\n\n");
     for (int i = 0; i < 10; i++) {
@@ -16,14 +16,14 @@ void encrypt_demo() {
         print_text(p);
         rgb(255,255,255);
         printf(" ) = ");
-        encrypt();
+        _encrypt();
         rgb(h,h,0);
         print_text(c);
         update_e();
         printf("   ");
         rgb(eh,eh,eh);
         print_text(e);
-        decrypt();
+        _decrypt();
         check_decryption();
         printf("\n");
     }
