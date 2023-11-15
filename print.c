@@ -4,7 +4,12 @@ void rgb(int r, int g, int b) {
 void cls() {
     printf( "\x1b[2J");
 }
-
+void reverse_text() {
+    printf("\x1b[7m");
+}
+void stop_reverse_text() {
+    printf("\x1b[27m");
+}
 void hide_cursor() {
     printf("\x1b[?25l");
 }
@@ -17,35 +22,21 @@ void cursor_to(int r, int c) {
 }
 
 void print_symbol(u32 i) {
-	printf("%s", i == 0 ? "O" : "|");
+    switch (i) {
+        case 1 : printf("|");break;
+        case 0 : printf("O");break;
+    }
 }
-void print_f(u32 h[N][N]) {
+void print_key(const u32 k[N][N]) {
 	for (u32 i = 0; i < N; i++) {
-        printf("            ");
-		for (u32 j = 0; j < N; j++) printf("%s", h[i][j] == 0 ? "O " : "| ");
+		for (u32 j = 0; j < N; j++) { print_symbol(k[i][j]); printf(" ");}
 		printf("\n");
 	}
-}
-void print_text(u32 t[N]) {
-	for (u32 j = 0; j < T; j++) printf("%s", t[j] == 0 ? "O" : "|");
+    printf("\n");
 }
 
-void print_status() {
-        printf("p = ");print_text(p);printf("\n");
-        printf("c = ");print_text(c);printf("\n");
-        printf("d = ");print_text(d);printf("\n\n");
+void print_text(u32 t[T]) {
+	for (u32 i = 0; i < T; i++) print_symbol(t[i]);
 }
-void print_f_color(u32 h[N][N]) {
-    u32 hue = 255;
-	for (u32 i = 0; i < N; i++) {
-        printf("            ");
-		for (u32 j = 0; j < N; j++) {
-            //h[i][j] == 0 ? rgb(255,0,0) : rgb(255,255,0);
-            h[i][j] == 0 ? rgb(hue,hue,hue) : rgb(50,50,50);
-            //printf("%s", h[i][j] == 0 ? "O " : "| ");
-            printf("%s", h[i][j] == 0 ? "O " : "\u2588\u2588");
-        }
-		printf("\n");
-	}
-}
+
 	
